@@ -45,22 +45,16 @@ public class ReviewService {
     /**
      * Service method for reading specific review
      *
-     * @param uuidString    UUID for identifying review
+     * @param filter    UUID for identifying review
      * @return  Response
      */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readReviews(@QueryParam("uuid") String uuidString){ //TODO: find better solution
+    public Response readReviews(@QueryParam("filter") String filter){ //TODO: find better solution
         int httpCode = 404;
         try{
-            UUID uuid = UUID.fromString(uuidString);
-            Map<String, Review> reviewList = DataHandler.getReviews();
-            if(reviewList.containsKey(uuid.toString())) {
-                Review review = reviewList.get(uuid.toString());
-                httpCode = 200;
-                return Response.status(httpCode).entity(review).build();
-            }
+            httpCode = 200;
         }catch (IllegalArgumentException e){
             httpCode = 400;
         }
