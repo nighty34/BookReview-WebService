@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * short description
+ * User Data Access Object
  * <p>
  * BookReview-WebService
  *
@@ -93,6 +93,8 @@ public class UserDao implements Dao<User, String> {
         } catch (SQLException sqlEx) {
             sqlEx.printStackTrace();
             throw new RuntimeException();
+        } finally {
+            MySqlDB.getInstance().sqlClose();
         }
     }
 }
