@@ -49,11 +49,50 @@ public class UserDao implements Dao<User, String> {
 
     @Override
     public User getEntity(String s) {
-        return null;
+        User user = new User();
+
+        try {
+            ResultSet resultSet = MySqlDB.getInstance().sqlSelect(
+                    "SELECT uuidUser, name, about, password, role FROM user WHERE " + s
+            );
+            if (resultSet.next()) {
+                user.setUuid(UUID.fromString(resultSet.getString(1)));
+                user.setName(resultSet.getString(2));
+                user.setAbout(resultSet.getString(3));
+                user.setPassword(resultSet.getString(4));
+                user.setRole(resultSet.getString(5));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        } finally {
+            MySqlDB.getInstance().sqlClose();
+        }
+
+        return user;
     }
 
     @Override
     public Result save(User user) {
-        return null;
+        try {
+            int affectedRows = MySqlDB.getInstance().sqlUpdate("REPLACE user" +
+                            " SET uuidUser=?, name=?, about=?, password=?, role=?",
+                    user.getUuid().toString(),
+                    user.getName(),
+                    user.getAbout(),
+                    user.getPassword(),
+                    user.getRole()
+            );
+            if (affectedRows <= 2) {
+                return Result.SUCCESS;
+            } else if (affectedRows == 0) {
+                return Result.NOACTION;
+            } else {
+                return Result.ERROR;
+            }
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 }
