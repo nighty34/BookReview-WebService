@@ -25,16 +25,16 @@ public class AuthorDao implements Dao<Author, String> {
     @Override
     public List<Author> getAll(String authorUUID){
         List<Author> authors = new ArrayList<>();
-        String sqlQuery = "";
+        String sqlQuery = "SELECT * FROM author";
 
         try{
-            MySqlDB.getInstance().setResultSet(MySqlDB.getInstance().sqlSelect(sqlQuery));
+            ResultSet result = MySqlDB.getInstance().sqlSelect(sqlQuery);
 
-            while (MySqlDB.getInstance().getResultSet().next()) {
+            while (result.next()) {
                 Author author = new Author();
-                author.setUuid(UUID.fromString(MySqlDB.getInstance().getResultSet().getString("")));
-                author.setName(MySqlDB.getInstance().getResultSet().getString(""));
-                author.setLanguage(MySqlDB.getInstance().getResultSet().getString(""));
+                author.setUuid(UUID.fromString(result.getString("")));
+                author.setName(result.getString(""));
+                author.setLanguage(result.getString(""));
                 authors.add(author);
             }
 
@@ -56,11 +56,11 @@ public class AuthorDao implements Dao<Author, String> {
         try {
             Integer result;
             if(author.getUuid()==null){
-                sqlQuery = "INSERT INTO ... SET ";
-                result = MySqlDB.getInstance().sqlUpdate(sqlQuery, ...)
+                sqlQuery = "INSERT INTO auhtor SET uuidAuthor=?, language=?, name=?";
+                result = MySqlDB.getInstance().sqlUpdate(sqlQuery, UUID.randomUUID().toString(), author.getLanguage(), author.getName());
             }else{
-                sqlQuery = "UPDATE ... SET WHERE";
-                result = MySqlDB.getInstance().sqlUpdate(sqlQuery, ...);
+                sqlQuery = "UPDATE author SET WHERE uuidAuthor=?, language=?, name=?";
+                result = MySqlDB.getInstance().sqlUpdate(sqlQuery, author.getUuid().toString(), author.getLanguage(), author.getName());
             }
 
 
@@ -82,6 +82,25 @@ public class AuthorDao implements Dao<Author, String> {
 
     @Override
     public Author getEntity(String filter){
+        Author author = new Author();
+        try{
+            ResultSet resultSet = MySqlDB.getInstance().sqlSelect(
+                    "SELECT * FROM author WHERE " + filter
+            );
+
+            if(resultSet.next()){
+                author.setUuid(UUID.fromString(resultSet.getString("uuidAuthor")));
+                author.setLanguage(resultSet.getString("language"));
+                author.setName(resultSet.getString("name"));
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        } finally {
+            MySqlDB.getInstance().sqlClose();
+        }
 
     }
 
