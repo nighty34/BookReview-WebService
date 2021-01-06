@@ -79,18 +79,37 @@ public class MySqlDB {
         return connection;
     }
 
+    /**
+     * Set the prepared statement values
+     * @param vals Strings as values
+     * @throws SQLException
+     */
     public void setValues(String... vals) throws SQLException {
         for (int i = 0; i < vals.length; i++) {
             prepStmt.setString(i+1, vals[i]);
         }
     }
 
+    /**
+     * Execute a select query
+     * @param query the query as a prepared statement
+     * @param vals the prepared statement arguments
+     * @return the results in form of an SQL ResultSet
+     * @throws SQLException
+     */
     public synchronized ResultSet sqlSelect(String query, String... vals) throws SQLException {
         prepStmt = connection.prepareStatement(query);
         setValues(vals);
         return prepStmt.executeQuery();
     }
 
+    /**
+     * Execute an update statement
+     * @param query the prepared statement to execute
+     * @param vals the prepared statement arguments
+     * @return the amount of columns affected
+     * @throws SQLException
+     */
     public synchronized int sqlUpdate(String query, String... vals) throws SQLException {
         prepStmt = connection.prepareStatement(query);
         setValues(vals);
