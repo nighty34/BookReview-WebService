@@ -1,5 +1,6 @@
 package ch.bzz.it.buchbewertungen.data;
 
+import ch.bzz.it.buchbewertungen.model.Author;
 import ch.bzz.it.buchbewertungen.model.Book;
 import ch.bzz.it.buchbewertungen.util.Result;
 
@@ -22,16 +23,18 @@ import java.util.List;
 public class BookDao implements Dao<Book, String> {
 
     @Override
-    public Book getEntity(String bookUUID){
+    public Book getEntity(String filter){
         Book book = new Book();
         //TODO SQL Query
-        String sqlQuery = "";
+        String sqlQuery = "SELECT * FROM book WHERE ?";
         try {
-            Connection connection = MySqlDB.getInstance().getConnection();
-            PreparedStatement prepStmt = connection.prepareStatement(sqlQuery);
-            ResultSet resultSet = prepStmt.executeQuery();
+            ResultSet resultSet = MySqlDB.getInstance().sqlSelect(sqlQuery, filter);
             if (resultSet.next()){
-                // TODO Setters
+                book.setAuthor(new AuthorDao().getEntity("uuidAuthor="+resultSet.getString("uuidAuthor")));
+                book.setiSBN(resultSet.getString("isbn"));
+                book.setPrice(resultSet.getDouble("price"));
+                book.setSeriesName("seriesname");
+                book.setTitle("title");
             }
 
         } catch (SQLException sqlEx){
@@ -44,21 +47,20 @@ public class BookDao implements Dao<Book, String> {
     }
 
     @Override
-    public List<Book> getAll(String bookUUID){
-        Connection connection;
-        PreparedStatement preStmt;
+    public List<Book> getAll(String filter){
         ResultSet resultSet;
         List<Book> bookList = new ArrayList<>();
-        String sqlQuery = "";
+        String sqlQuery = "SELECT * FROM book WHERE ?";
 
         try{
-            connection = MySqlDB.getInstance().getConnection();
-            preStmt = connection.prepareStatement(sqlQuery);
-            resultSet = preStmt.executeQuery();
+            resultSet = MySqlDB.getInstance().sqlSelect(sqlQuery, filter);
             while (resultSet.next()){
                 Book book = new Book();
-                //TODO Settings
-
+                book.setAuthor(new AuthorDao().getEntity("uuidAuthor="+resultSet.getString("uuidAuthor")));
+                book.setiSBN(resultSet.getString("isbn"));
+                book.setPrice(resultSet.getDouble("price"));
+                book.setSeriesName("seriesname");
+                book.setTitle("title");
                 bookList.add(book);
             }
         }catch (SQLException  sqlEx){
@@ -73,14 +75,11 @@ public class BookDao implements Dao<Book, String> {
 
     @Override
     public Result save(Book book){
-        Connection connection;
-        PreparedStatement prepStmt;
-        String sqlQuery = "";
+
+        String sqlQuery = "INSERT INTO books SET uuidBook=?, title=?, seriesname=?, uuidAuthor=?, isbn=?, price=?";
 
         try{
-            connection = MySqlDB.getInstance().getConnection();
-            prepStmt = connection.prepareStatement(sqlQuery);
-            int affectedRows = prepStmt.executeUpdate();
+            int affectedRows = MySqlDB.getInstance().sqlUpdate(sqlQuery, book.getUuid().toString(), book.getTitle(), book.getSeriesname(), book.getAuthor().getUuid().toString(), book.getiSBN(), "" + book.getPrice());
             if (affectedRows <= 2) {
                 return Result.SUCCESS;
             } else if (affectedRows == 0) {
