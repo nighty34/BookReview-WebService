@@ -23,12 +23,12 @@ import java.util.UUID;
 public class AuthorDao implements Dao<Author, String> {
 
     @Override
-    public List<Author> getAll(String authorUUID){
+    public List<Author> getAll(String filter){
         List<Author> authors = new ArrayList<>();
-        String sqlQuery = "SELECT * FROM author";
+        String sqlQuery = "SELECT * FROM author WHERE ?";
 
         try{
-            ResultSet result = MySqlDB.getInstance().sqlSelect(sqlQuery);
+            ResultSet result = MySqlDB.getInstance().sqlSelect(sqlQuery, filter);
 
             while (result.next()) {
                 Author author = new Author();

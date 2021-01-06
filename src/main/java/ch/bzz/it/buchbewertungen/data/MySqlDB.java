@@ -1,6 +1,8 @@
 package ch.bzz.it.buchbewertungen.data;
 
 
+import ch.bzz.it.buchbewertungen.service.Config;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
