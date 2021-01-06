@@ -1,5 +1,7 @@
 package ch.bzz.it.buchbewertungen.data;
 
+import ch.bzz.it.buchbewertungen.model.Book;
+
 /**
  * short description
  * <p>
@@ -9,5 +11,6 @@ package ch.bzz.it.buchbewertungen.data;
  * @version 1.0
  * @since 06.01.21
  */
-public class BookDao {
+public class BookDao implements Dao<Book, String>{
+
 }
