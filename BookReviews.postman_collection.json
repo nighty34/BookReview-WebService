@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "3ffa5d20-11f3-415e-aa6c-2a95a48beeca",
+		"name": "BookReviews",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.0 Login als Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Diamon23",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "312",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.1 Reviewliste-anzeigen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/review/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"review",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.2 Review Auslesen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/review/read?uuid=2c5b3ae0-7a12-4b01-ae3f-9a97b0a6ebe6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"review",
+						"read"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "2c5b3ae0-7a12-4b01-ae3f-9a97b0a6ebe6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.3 Review Erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userid",
+							"value": "d3825010-5849-4705-a287-ab5c1da4c3be",
+							"type": "text"
+						},
+						{
+							"key": "bookid",
+							"value": "29e61878-9d39-430b-b850-0ba1907f3ade",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "90",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Danach sind alle schlecht",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/review/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"review",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4 Review Editieren",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "reviewid",
+							"value": "2c5b3ae0-7a12-4b01-ae3f-9a97b0a6ebe6",
+							"type": "text"
+						},
+						{
+							"key": "userid",
+							"value": "df4a36ef-b0d8-4493-8368-97a7bf49668d",
+							"type": "text"
+						},
+						{
+							"key": "bookid",
+							"value": "ed31e9ce-1d07-4c04-ae26-891c73b4349f",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "80",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Ehh yes",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/review/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"review",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.6 Bücher Ausgeben",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/book/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"book",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.7 Buch Auslesen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/book/read?uuid=0bce9df2-5762-40e2-9c9b-fabf707381f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"book",
+						"read"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "0bce9df2-5762-40e2-9c9b-fabf707381f6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.8 Buch Erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Das grosse Lachen",
+							"type": "text"
+						},
+						{
+							"key": "series",
+							"value": "Das Leben",
+							"type": "text"
+						},
+						{
+							"key": "authorid",
+							"value": "2c66c4d9-7225-405a-96aa-1077fba92af1",
+							"type": "text"
+						},
+						{
+							"key": "isbn",
+							"value": "978-3-905980-14-2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "20.00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/book/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"book",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.9 Buch Editieren",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "bookid",
+							"value": "29e61878-9d39-430b-b850-0ba1907f3ade",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Der Stein der Weisen",
+							"type": "text"
+						},
+						{
+							"key": "authorid",
+							"value": "dbc64644-bd78-4de2-af9f-b264832b45d3",
+							"type": "text"
+						},
+						{
+							"key": "isbn",
+							"value": "978-3-905980-14-1",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "20.00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/book/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"book",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.11 Authoren Ausgeben",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/author/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"author",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.12 Author Auslesen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/author/read?uuid=555884ad-6539-465a-8f75-96b66e4f677f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"author",
+						"read"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "555884ad-6539-465a-8f75-96b66e4f677f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.13 Author Erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Eddie van der Meer",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "Deutsch",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/author/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"author",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.14 Author Editieren",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authorid",
+							"value": "dbc64644-bd78-4de2-af9f-b264832b45d3",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Der Stein",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "Englisch",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/author/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"author",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.16 User Ausgeben",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/user/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.17 User Auslesen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/user/read?uuid=16a371ab-3c9e-4fab-a7dd-dc55118c273f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"user",
+						"read"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "16a371ab-3c9e-4fab-a7dd-dc55118c273f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.18 User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Diamon23",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "312",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.19 User Registrieren",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Nightfury34",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "098765432",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BucherBewerten_war_exploded/resource/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BucherBewerten_war_exploded",
+						"resource",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
