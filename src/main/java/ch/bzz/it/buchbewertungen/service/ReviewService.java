@@ -1,6 +1,7 @@
 package ch.bzz.it.buchbewertungen.service;
 
 import ch.bzz.it.buchbewertungen.data.DataHandler;
+import ch.bzz.it.buchbewertungen.data.ReviewDao;
 import ch.bzz.it.buchbewertungen.model.Review;
 
 import javax.validation.Valid;
@@ -53,13 +54,22 @@ public class ReviewService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response readReviews(@QueryParam("filter") String filter){ //TODO: find better solution
         int httpCode = 404;
+
         try{
+            Review review = new ReviewDao().getEntity(filter);
             httpCode = 200;
+            return Response
+                    .status(httpCode)
+                    .entity(review)
+                    .build();
         }catch (IllegalArgumentException e){
             httpCode = 400;
         }
 
-        return Response.status(httpCode).build();
+        return Response
+                .status(httpCode)
+                .build();
+
     }
 
     /**
