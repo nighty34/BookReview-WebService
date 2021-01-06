@@ -102,6 +102,8 @@ public class AuthorDao implements Dao<Author, String> {
             MySqlDB.getInstance().sqlClose();
         }
 
+
+        return author;
     }
 
 
