@@ -1,6 +1,5 @@
 package ch.bzz.it.buchbewertungen.model;
 
-import javax.ws.rs.FormParam;
 import java.util.UUID;
 
 /**
@@ -14,11 +13,8 @@ import java.util.UUID;
  */
 public class Author {
 
-
-    @FormParam("name")
     private String name;
 
-    @FormParam("language")
     private String language;
 
     private UUID uuid;

@@ -1,9 +1,5 @@
 package ch.bzz.it.buchbewertungen.model;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
 import java.util.UUID;
 
 /**
@@ -21,13 +17,8 @@ public class Review {
     private User user;
     private Book book;
 
-    @FormParam("value")
-    @Min(value = 1)
-    @Max(value = 100)
     private int value;
 
-    @FormParam("comment")
-    @Size(max = 500)
     private String comment;
 
 

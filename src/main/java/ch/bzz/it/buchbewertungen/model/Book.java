@@ -1,9 +1,6 @@
 package ch.bzz.it.buchbewertungen.model;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
+
 import java.util.UUID;
 
 /**
@@ -17,22 +14,15 @@ import java.util.UUID;
  */
 public class Book {
 
-    @FormParam("title")
-    @Size(max=100, min=1)
+
     private String title;
 
-    @FormParam("series")
-    @Size(max=100, min=1)
     private String seriesname;
 
     private Author author;
 
-    @FormParam("isbn")
     private String iSBN;
 
-    @FormParam("price")
-    @DecimalMax(value="200.00")
-    @DecimalMin(value ="0.05")
     private double price;
 
     //TODO: Setup
